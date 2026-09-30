@@ -1,0 +1,67 @@
+
+[
+  {
+    "id": "1",
+    "nombre": "Teclado Mecánico RGB",
+    "precio": 45000,
+    "categoria": "perifericos",
+    "imagen": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&q=80",
+    "descripcion": "Teclado mecánico con switches blue, retroiluminación RGB configurable y anti-ghosting."
+  },
+  {
+    "id": "2",
+    "nombre": "Mouse Gamer Inalámbrico",
+    "precio": 28000,
+    "categoria": "perifericos",
+    "imagen": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=500&q=80",
+    "descripcion": "Mouse ergonómico inalámbrico de alta precisión con sensor de 16000 DPI."
+  },
+  {
+    "id": "3",
+    "nombre": "Monitor 24 Pulgadas FHD",
+    "precio": 180000,
+    "categoria": "monitores",
+    "imagen": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&q=80",
+    "descripcion": "Monitor Full HD IPS con tasa de refresco de 144Hz y bordes ultra delgados."
+  },
+  {
+    "id": "4",
+    "nombre": "Auriculares Bluetooth Pro",
+    "precio": 65000,
+    "categoria": "audio",
+    "imagen": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80",
+    "descripcion": "Auriculares over-ear con cancelación activa de ruido y autonomía de 30 horas."
+  },
+  {
+    "id": "5",
+    "nombre": "Silla Gamer Ergonómica",
+    "precio": 220000,
+    "categoria": "accesorios",
+    "imagen": "https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=500&q=80",
+    "descripcion": "Silla con soporte lumbar ajustable, reclinable 180° y apoyabrazos 4D."
+  },
+  {
+    "id": "6",
+    "nombre": "Webcam 4K UltraHD",
+    "precio": 52000,
+    "categoria": "perifericos",
+    "imagen": "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=500&q=80",
+    "descripcion": "Cámara web con micrófono estéreo integrado y enfoque automático ideal para streaming."
+  },
+  {
+    "id": "7",
+    "nombre": "Placa de Video RTX 4060",
+    "precio": 480000,
+    "categoria": "componentes",
+    "imagen": "https://images.unsplash.com/photo-1591488320449-011701bb6704?w=500&q=80",
+    "descripcion": "Tarjeta gráfica de 8GB GDDR6 con DLSS 3 y Ray Tracing para máximo rendimiento."
+  },
+  {
+    "id": "8",
+    "nombre": "Disco SSD M.2 1TB",
+    "precio": 95000,
+    "categoria": "componentes",
+    "imagen": "https://images.unsplash.com/photo-1597872250970-4566373b9e83?w=500&q=80",
+    "descripcion": "Unidad de estado sólido NVMe PCIe 4.0 con velocidades de lectura de hasta 7000 MB/s."
+  }
+]
