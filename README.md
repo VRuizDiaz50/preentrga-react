@@ -1,16 +1,38 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# E-Commerce React — Entrega Final (2026-2C)
 
-Currently, two official plugins are available:
+Aplicación web de e-commerce desarrollada con **React** y **Vite**, conectada a **Firebase** (Authentication y Firestore) para la gestión de usuarios y catálogo de productos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funcionalidades implementadas
 
-## React Compiler
+- **Carrito de compras (`CarritoContext`):** Gestión del estado global del carrito mediante Context API, con opciones para agregar productos, incrementar o decrementar cantidades, eliminar ítems y vaciar el carrito.
+- **Autenticación y rutas protegidas (`AuthContext`):** Inicio de sesión y registro con Firebase Authentication, y protección de rutas de administración para restringir el acceso al panel de gestión.
+- **CRUD de productos con Firebase:** Creación, lectura, edición y eliminación de productos (con confirmación previa antes de borrar), incluyendo manejo de estados de carga y mensajes de error.
+- **Búsqueda y filtrado por categorías:** Búsqueda en tiempo real conectada mediante parámetros de URL (`?buscar=...`) y navegación por categorías (*Cuidado personal*, *Entretenimiento*, *Línea blanca* e *Informática*).
+- **Diseño y navegación:** Interfaz responsiva con encabezado, sub-barra de categorías y vistas organizadas para catálogo, detalle, carrito y administración.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Acceso al panel de administración
 
-## Expanding the ESLint configuration
+Para probar el acceso y la gestión del panel de administración:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Correo:** `admin@gmail.com`
+- **Contraseña:** `admin123`
+
+## Tecnologías utilizadas
+
+- **React** + **Vite**
+- **React Router**
+- **Firebase Authentication** y **Cloud Firestore**
+- **Context API**
+- **JavaScript** y **CSS**
+
+## Instalación y ejecución local
+
+1. Instalar dependencias:
+   ```bash
+   npm install
+   ```
+2. Iniciar el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```

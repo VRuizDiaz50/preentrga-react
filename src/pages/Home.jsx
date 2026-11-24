@@ -8,21 +8,23 @@ const Home = () => {
       {/* Banner con fondo claro y sutil */}
       <section 
         style={{
-          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80')`,
+    
+          backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.45)), url("/electrodomesticos-banner.jpg")',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          color: '#222222',
-          padding: '80px 20px',
+          backgroundPosition: 'center 35%',
+          color: '#ffffff',
+          padding: '50px 20px',
           textAlign: 'center',
-          borderRadius: '8px',
-          margin: '20px',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+          width: '100%',
+          boxSizing: 'border-box'
+  
         }}
       >
-        <h1 style={{ fontSize: '2.5rem', marginBottom: '15px', color: '#111111' }}>
+        <h1 style={{ fontSize: '2.5rem', marginBottom: '15px', color: '#ffffff' }}>
+          
           ¡Bienvenidos a Tech Store!
         </h1>
-        <p style={{ fontSize: '1.2rem', marginBottom: '25px', color: '#555555' }}>
+        <p style={{ fontSize: '1.2rem', marginBottom: '25px', color: '#ffffff' }}>
           Encuentra los mejores periféricos y componentes al mejor precio.
         </p>
         <Link 

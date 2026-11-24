@@ -19,25 +19,7 @@ const Item = ({ producto }) => {
       boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
       position: 'relative'
     }}>
-      {/* Botón de Corazón (Me Gusta) */}
-      <button 
-        onClick={toggleMeGusta}
-        title={meGusta ? "Quitar de me gusta" : "Agregar a me gusta"}
-        style={{
-          position: 'absolute',
-          top: '12px',
-          right: '12px',
-          background: 'transparent',
-          border: 'none',
-          fontSize: '1.4rem',
-          cursor: 'pointer',
-          color: meGusta ? '#e63946' : '#ccc',
-          transition: 'color 0.2s ease, transform 0.1s ease'
-        }}
-      >
-        {meGusta ? '❤️' : '🤍'}
-      </button>
-
+      
       <img 
         src={producto.imagen} 
         alt={producto.nombre} 
@@ -62,7 +44,24 @@ const Item = ({ producto }) => {
         }}
       >
         Ver Detalle
-      </Link>
+        {/* Botón de Corazón (Me Gusta) */}
+        </Link>
+      <button 
+        onClick={toggleMeGusta}
+        title={meGusta ? "Quitar de me gusta" : "Agregar a me gusta"}
+        style={{
+          marginLeft: '10px',
+          verticalAlign: 'middle', 
+          background: 'transparent',
+          border: 'none',
+          fontSize: '1.4rem',
+          cursor: 'pointer',
+          color: meGusta ? '#e63946' : '#ccc',
+          transition: 'color 0.2s ease, transform 0.1s ease'
+        }}
+      >
+        {meGusta ? '❤️' : '🤍'}
+      </button>
     </div>
   );
 };

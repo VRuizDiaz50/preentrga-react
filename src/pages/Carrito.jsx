@@ -1,43 +1,29 @@
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useCarrito } from '../context/CarritoContext';
 
 const Carrito = () => {
-  // Estado con un producto de muestra para preentrega
-  const [itemsCarrito, setItemsCarrito] = useState([
-    {
-      id: '1',
-      nombre: 'Teclado Mecánico RGB',
-      precio: 45000,
-      cantidad: 1,
-      imagen: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&q=80'
-    }
-  ]);
+  const {
+    itemsCarrito,
+    incrementarCantidad,
+    decrementarCantidad,
+    eliminarProducto,
+    vaciarCarrito,
+    calcularSubtotal,
+    calcularDescuento,
+    calcularTotal,
+    promociones,
+    obtenerPromocionesAplicadas,
+    esPrimeraCompra,
+    setEsPrimeraCompra,
+    pagaConTarjeta,
+    setPagaConTarjeta
+  } = useCarrito();
 
-  const incrementarCantidad = (id) => {
-    setItemsCarrito(itemsCarrito.map(item => 
-      item.id === id ? { ...item, cantidad: item.cantidad + 1 } : item
-    ));
-  };
-
-  const decrementarCantidad = (id) => {
-    setItemsCarrito(itemsCarrito.map(item => {
-      if (item.id === id && item.cantidad > 1) {
-        return { ...item, cantidad: item.cantidad - 1 };
-      }
-      return item;
-    }));
-  };
-
-  const eliminarProducto = (id) => {
-    setItemsCarrito(itemsCarrito.filter(item => item.id !== id));
-  };
-
-  const calcularTotal = () => {
-    return itemsCarrito.reduce((acc, item) => acc + (item.precio * item.cantidad), 0);
-  };
+  const promosAplicadas = obtenerPromocionesAplicadas();
 
   return (
-    <div style={{ maxWidth: '800px', margin: '40px auto', padding: '0 20px' }}>
+    <div style={{ maxWidth: '800px', margin: '40px auto', padding: '0 16px' }}>
       <h2>Carrito de Compras</h2>
 
       {itemsCarrito.length === 0 ? (
@@ -46,73 +32,63 @@ const Carrito = () => {
         </div>
       ) : (
         <div>
-          {itemsCarrito.map(item => (
-            <div 
+          {itemsCarrito.map((item) => (
+            <div
               key={item.id}
               style={{
                 display: 'flex',
-                alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '16px',
-                border: '1px solid #e0e0e0',
-                borderRadius: '8px',
-                marginBottom: '12px',
-                backgroundColor: '#fff'
+                alignItems: 'center',
+                gap: '12px',
+                padding: '12px 0',
+                borderBottom: '1px solid #e2e8f0',
+                flexWrap: 'wrap'
               }}
             >
-              <img 
-                src={item.imagen} 
-                alt={item.nombre} 
-                style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px' }} 
-              />
-              
-              <div style={{ flex: 1, marginLeft: '16px' }}>
-                <h4 style={{ margin: '0 0 4px 0' }}>{item.nombre}</h4>
-                <p style={{ margin: 0, color: '#666' }}>${item.precio} c/u</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                {item.imagen && (
+                  <img
+                    src={item.imagen}
+                    alt={item.nombre}
+                    style={{ width: '64px', height: '64px', objectFit: 'cover', borderRadius: '6px' }}
+                  />
+                )}
+                <div>
+                  <h4 style={{ margin: 0 }}>{item.nombre}</h4>
+                  <p style={{ margin: '4px 0', color: '#475569' }}>
+                    Precio unitario: ${Number(item.precio)}
+                  </p>
+                </div>
               </div>
 
-              {/* Botones de incremento/decremento */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <button 
+                <button
+                  type="button"
                   onClick={() => decrementarCantidad(item.id)}
-                  style={{
-                    width: '30px',
-                    height: '30px',
-                    borderRadius: '4px',
-                    border: '1px solid #ccc',
-                    backgroundColor: '#f5f5f5',
-                    cursor: 'pointer',
-                    fontWeight: 'bold'
-                  }}
+                  style={{ padding: '4px 10px', cursor: 'pointer' }}
                 >
                   -
                 </button>
-                <span style={{ fontWeight: 'bold', minWidth: '20px', textAlign: 'center' }}>
-                  {item.cantidad}
-                </span>
-                <button 
+                <span>{item.cantidad}</span>
+                <button
+                  type="button"
                   onClick={() => incrementarCantidad(item.id)}
-                  style={{
-                    width: '30px',
-                    height: '30px',
-                    borderRadius: '4px',
-                    border: '1px solid #ccc',
-                    backgroundColor: '#f5f5f5',
-                    cursor: 'pointer',
-                    fontWeight: 'bold'
-                  }}
+                  style={{ padding: '4px 10px', cursor: 'pointer' }}
                 >
                   +
                 </button>
-              </div>
-
-              <div style={{ textAlign: 'right', minWidth: '100px', marginLeft: '16px' }}>
-                <p style={{ fontWeight: 'bold', margin: '0 0 4px 0' }}>
-                  ${item.precio * item.cantidad}
-                </p>
-                <button 
+                <button
+                  type="button"
                   onClick={() => eliminarProducto(item.id)}
-                  style={{ background: 'none', border: 'none', color: '#d9534f', cursor: 'pointer', fontSize: '0.85rem' }}
+                  style={{
+                    padding: '4px 10px',
+                    marginLeft: '8px',
+                    backgroundColor: '#dc2626',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer'
+                  }}
                 >
                   Eliminar
                 </button>
@@ -120,8 +96,76 @@ const Carrito = () => {
             </div>
           ))}
 
-          <div style={{ marginTop: '20px', borderTop: '2px solid #eee', paddingTop: '16px', textAlign: 'right' }}>
-            <h3>Total: ${calcularTotal()}</h3>
+          <div
+            style={{
+              marginTop: '24px',
+              padding: '16px',
+              border: '1px solid #cbd5e1',
+              borderRadius: '8px',
+              backgroundColor: '#f8fafc'
+            }}
+          >
+            <h3 style={{ marginTop: 0 }}>Promociones</h3>
+
+            {promociones.length > 0 ? (
+              <ul style={{ marginTop: '8px', paddingLeft: '20px' }}>
+                {promociones.map((promo) => (
+                  <li key={promo.id}>{promo.titulo}</li>
+                ))}
+              </ul>
+            ) : (
+              <p style={{ color: '#64748b', fontSize: '0.95rem' }}>
+                No hay promociones cargadas o activas en este momento.
+              </p>
+            )}
+
+            <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', margin: '12px 0' }}>
+              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={esPrimeraCompra}
+                  onChange={(e) => setEsPrimeraCompra(e.target.checked)}
+                />
+                Es mi primera compra (15% OFF)
+              </label>
+
+              <label style={{ display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={pagaConTarjeta}
+                  onChange={(e) => setPagaConTarjeta(e.target.checked)}
+                />
+                Pago con tarjeta de crédito (10% OFF)
+              </label>
+            </div>
+
+            {promosAplicadas.length > 0 && (
+              <p style={{ color: '#16a34a', fontWeight: 'bold', margin: '8px 0' }}>
+                Promociones aplicadas: {promosAplicadas.map((p) => p.titulo).join(' + ')}
+              </p>
+            )}
+
+            <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0', margin: '12px 0' }} />
+
+            <p style={{ margin: '6px 0' }}>Subtotal: ${calcularSubtotal()}</p>
+            <p style={{ margin: '6px 0', color: '#16a34a' }}>Descuento: -${calcularDescuento()}</p>
+            <h3 style={{ margin: '10px 0 0 0' }}>Total a pagar: ${calcularTotal()}</h3>
+
+            <div style={{ marginTop: '16px', display: 'flex', gap: '12px' }}>
+              <button
+                type="button"
+                onClick={vaciarCarrito}
+                style={{
+                  padding: '8px 14px',
+                  backgroundColor: '#e2e8f0',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer'
+                }}
+              >
+                Vaciar carrito
+              </button>
+            </div>
           </div>
         </div>
       )}

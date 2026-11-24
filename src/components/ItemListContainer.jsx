@@ -1,23 +1,17 @@
-import { useState, useEffect } from 'react';
+
 import Item from './Item';
 
-const ItemListContainer = () => {
-  const [productos, setProductos] = useState([]);
-  const [cargando, setCargando] = useState(true);
-
-  useEffect(() => {
-    // Simulamos la consulta a una API consumiendo el archivo local productos.json
-    fetch('/src/data/productos.json')
-      .then((respuesta) => respuesta.json())
-      .then((datos) => {
-        setProductos(datos);
-        setCargando(false);
-      })
-      .catch((error) => console.error('Error cargando productos:', error));
-  }, []);
-
+const ItemListContainer = ({ productos = [], cargando = false, error = '' }) => {
   if (cargando) {
     return <p style={{ textAlign: 'center' }}>Cargando catálogo de productos...</p>;
+  }
+
+  if (error) {
+    return <p style={{ textAlign: 'center' }}>{error}</p>;
+  }
+
+  if (productos.length === 0) {
+    return <p style={{ textAlign: 'center' }}>No hay productos cargados en Firestore todavía.</p>;
   }
 
   return (
